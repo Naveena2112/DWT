@@ -1,0 +1,13 @@
+s=imread('cameraman.tif');
+figure,imshow(s),title('original image');
+I1=double(s);
+%first decomposition
+[aa,hh,vv,dd]=dwt2(I1,'db4');
+I2=[aa,hh;vv,dd];
+figure,imshow(uint8(I2)),title('first level decomposition ');
+%second decomposition
+[a,h,v,d]=dwt2(I2,'db4');
+I3=double([a,h;v,d]);
+figure,imshow(uint8(I3)),title('second level decomposition ');
+A0 = idwt2(aa,hh,vv,dd ,'db4');
+figure,imshow(uint8(A0)),title('inverse dwt image');
